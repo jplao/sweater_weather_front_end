@@ -47,3 +47,19 @@ span{
   background-color: #00C2C9;
   color: #FFFFFF;
 }
+
+.hourly{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  color: #00C2C9;
+}
+
+.five_day{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  color: #0088B4;
+}
+
+.current{
+  color: #FFFFFF;
+}
