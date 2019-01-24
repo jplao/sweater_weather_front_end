@@ -65,5 +65,7 @@ span{
 }
 
 .favorites{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   color: #00C2C9;
 }
