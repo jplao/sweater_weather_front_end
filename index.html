@@ -17,6 +17,7 @@
   <div class='search'>
     <input id='location' type='text' placeholder='Enter location'>
     <button class='button' onclick="submitLocation()">Show Weather</button>
+    <button class='button' onclick="getFavorites()">Favorites</button>
   </div>
 
   <div class='register'>
@@ -115,13 +116,14 @@
         <section id='5_5rain'></section>
       </div>
     </div>
-
+  </div>
+  <div class='favorites' id='favorited_cities'>
   </div>
     <script
     src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
   </script>
+  <script type='text/javascript' src='config.js'></script>
   <script src="lib/index.js"></script>
   <script src="main.bundle.js"></script>
-  <script type='text/javascript' src='config.js'></script>
 </body>
 </html>
