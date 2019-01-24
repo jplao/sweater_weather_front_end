@@ -10,13 +10,28 @@
   <div class='header'>
     <br>
     <button class='button' onclick="login()" style="float:right">Login</button>
-    <button class='button' onclick="register()" style="float:right">Register</button>
+    <button class='button' onclick="displayRegisterForm()" style="float:right">Register</button>
     <h1><span>Sweater</span> Weather </h1>
   </div> <br><br>
 
   <div class='search'>
     <input id='location' type='text' placeholder='Enter location'>
     <button class='button' onclick="submitLocation()">Show Weather</button>
+  </div>
+
+  <div class='register'>
+    <form id='register_form' style="display:none">
+      <label for="email"><b>Email:</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required><br>
+
+      <label for="psw"><b>Password:</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required><br>
+
+      <label for="psw-repeat"><b>Repeat Password:</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
+
+      <button class='button' type="submit">Submit</button>
+    </form>
   </div>
 
   <div class='forecast'><br>
