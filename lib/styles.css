@@ -51,12 +51,14 @@ span{
 .hourly{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 9px;
   color: #00C2C9;
 }
 
 .five_day{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 9px;
   color: #0088B4;
 }
 
@@ -67,5 +69,11 @@ span{
 .favorites{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 9px;
   color: #00C2C9;
+}
+
+.weather_forecast{
+  background-color: #000000;
+  margin: 1;
 }
