@@ -12,6 +12,10 @@ h1 {
   font-size: 60px;
 }
 
+h3{
+  color: #75FAC8;
+}
+
 input {
   width: 250px;
   padding: 5px;
@@ -48,24 +52,37 @@ span{
   color: #FFFFFF;
 }
 
+
+
 .hourly{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 9px;
   color: #00C2C9;
 }
 
 .five_day{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  color: #0088B4;
+  column-gap: 9px;
+  color: #FFFFFF;
 }
 
 .current{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 9px;
   color: #FFFFFF;
 }
 
 .favorites{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  color: #00C2C9;
+  column-gap: 9px;
+  color: #FFFFFF;
+}
+
+.weather_forecast{
+  background-color: #000000;
+  margin: 1;
 }

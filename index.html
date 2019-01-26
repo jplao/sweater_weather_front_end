@@ -9,7 +9,7 @@
 
   <div class='header'>
     <br>
-    <button class='button' onclick="login()" style="float:right">Login</button>
+    <button class='button' id="login-btn" style="float:right">Login</button>
     <button class='button' onclick="displayRegisterForm()" style="float:right">Register</button>
     <h1><span>Sweater</span> Weather </h1>
   </div> <br><br>
@@ -36,86 +36,12 @@
   </div>
 
   <div class='forecast'><br>
-    <div class='current'>
-      <section id='searched_location'></section>
-      <section id='time'></section>
-      <section id='current_temp'></section>
-      <section id='current_summary'></section>
+    <div class='current' id='current_forecast'>
     </div><br>
-    <div class='hourly'>
-      <div>
-        <section id='1hour'></section>
-        <section id='1temp'></section>
-        <section id='1icon'></section>
-      </div>
-      <div>
-        <section id='2hour'></section>
-        <section id='2temp'></section>
-        <section id='2icon'></section>
-      </div>
-      <div>
-        <section id='3hour'></section>
-        <section id='3temp'></section>
-        <section id='3icon'></section>
-      </div>
-      <div>
-        <section id='4hour'></section>
-        <section id='4temp'></section>
-        <section id='4icon'></section>
-      </div>
-      <div>
-        <section id='5hour'></section>
-        <section id='5temp'></section>
-        <section id='5icon'></section>
-      </div>
-      <div>
-        <section id='6hour'></section>
-        <section id='6temp'></section>
-        <section id='6icon'></section>
-      </div>
-      <div>
-        <section id='7hour'></section>
-        <section id='7temp'></section>
-        <section id='7icon'></section>
-      </div>
-      <div>
-        <section id='8hour'></section>
-        <section id='8temp'></section>
-        <section id='8icon'></section>
-      </div>
+    <div class='hourly' id='hourly_forecast'>
     </div><br>
-    <div class='five_day'>
-      <div>
-        <section id='1_5day'></section>
-        <section id='1_5icon'></section>
-        <section id='1_5temp'></section>
-        <section id='1_5rain'></section>
-      </div>
-      <div>
-        <section id='2_5day'></section>
-        <section id='2_5icon'></section>
-        <section id='2_5temp'></section>
-        <section id='2_5rain'></section>
-      </div>
-      <div>
-        <section id='3_5day'></section>
-        <section id='3_5icon'></section>
-        <section id='3_5temp'></section>
-        <section id='3_5rain'></section>
-      </div>
-      <div>
-        <section id='4_5day'></section>
-        <section id='4_5icon'></section>
-        <section id='4_5temp'></section>
-        <section id='4_5rain'></section>
-      </div>
-      <div>
-        <section id='5_5day'></section>
-        <section id='5_5icon'></section>
-        <section id='5_5temp'></section>
-        <section id='5_5rain'></section>
-      </div>
-    </div>
+    <div class='five_day' id='five_day_forecast'>
+    </div><br>
   </div>
   <div class='favorites' id='favorited_cities'>
   </div>

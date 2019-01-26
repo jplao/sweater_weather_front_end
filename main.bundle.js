@@ -46,6 +46,13 @@
 
 	"use strict";
 
+	var api_key = config.API_KEY;
+
+	var form = document.querySelector("form");
+	form.addEventListener("submit", function (event) {
+	  console.log("Saving value", form.elements.value.value);
+	  event.preventDefault();
+	});
 	// This file is in the entry point in your webpack config.
 
 	function submitLocation() {
@@ -55,71 +62,151 @@
 	  var url = "https://sweater-weather-25661.herokuapp.com/api/v1/forecast?location=" + location;
 	  fetch(url).then(function (response) {
 	    return response.json();
-	  }).then(function (response) {
-	    _this.showWeather(response);
+	  }).then(function (json_response) {
+	    _this.showWeather(json_response);
+	  });
+	}
+
+	function getFavorites() {
+	  var _this2 = this;
+
+	  var url = "https://sweater-weather-25661.herokuapp.com/api/v1/favorites?api_key=" + api_key;
+	  fetch(url).then(function (response) {
+	    return response.json();
+	  }).then(function (json_response) {
+	    _this2.displayFavorites(json_response);
 	  });
 	}
 
 	function showWeather(response) {
-	  document.getElementById("searched_location").innerHTML = 'Location: ' + response['data']['attributes']['location'].toUpperCase();
-	  document.getElementById("time").innerHTML = response['data']['attributes']['time'];
-	  var temp = response['data']['attributes']['today']['current_temp'];
-	  document.getElementById("current_temp").innerHTML = 'Current temp: ' + Math.round(temp) + '&deg';
-	  document.getElementById("current_summary").innerHTML = response['data']['attributes']['today']['current_summary'];
-	  document.getElementById("1hour").innerHTML = response['data']['attributes']['hourly'][0]['hour'];
-	  document.getElementById("1temp").innerHTML = response['data']['attributes']['hourly'][0]['temp'] + '&deg';
-	  document.getElementById("1icon").innerHTML = response['data']['attributes']['hourly'][0]['icon'];
-	  document.getElementById("2hour").innerHTML = response['data']['attributes']['hourly'][1]['hour'];
-	  document.getElementById("2temp").innerHTML = response['data']['attributes']['hourly'][1]['temp'] + '&deg';
-	  document.getElementById("2icon").innerHTML = response['data']['attributes']['hourly'][1]['icon'];
-	  document.getElementById("3hour").innerHTML = response['data']['attributes']['hourly'][2]['hour'];
-	  document.getElementById("3temp").innerHTML = response['data']['attributes']['hourly'][2]['temp'] + '&deg';
-	  document.getElementById("3icon").innerHTML = response['data']['attributes']['hourly'][2]['icon'];
-	  document.getElementById("4hour").innerHTML = response['data']['attributes']['hourly'][3]['hour'];
-	  document.getElementById("4temp").innerHTML = response['data']['attributes']['hourly'][3]['temp'] + '&deg';
-	  document.getElementById("4icon").innerHTML = response['data']['attributes']['hourly'][3]['icon'];
-	  document.getElementById("5hour").innerHTML = response['data']['attributes']['hourly'][4]['hour'];
-	  document.getElementById("5temp").innerHTML = response['data']['attributes']['hourly'][4]['temp'] + '&deg';
-	  document.getElementById("5icon").innerHTML = response['data']['attributes']['hourly'][4]['icon'];
-	  document.getElementById("6hour").innerHTML = response['data']['attributes']['hourly'][5]['hour'];
-	  document.getElementById("6temp").innerHTML = response['data']['attributes']['hourly'][5]['temp'] + '&deg';
-	  document.getElementById("6icon").innerHTML = response['data']['attributes']['hourly'][5]['icon'];
-	  document.getElementById("7hour").innerHTML = response['data']['attributes']['hourly'][6]['hour'];
-	  document.getElementById("7temp").innerHTML = response['data']['attributes']['hourly'][6]['temp'] + '&deg';
-	  document.getElementById("7icon").innerHTML = response['data']['attributes']['hourly'][6]['icon'];
-	  document.getElementById("8hour").innerHTML = response['data']['attributes']['hourly'][7]['hour'];
-	  document.getElementById("8temp").innerHTML = response['data']['attributes']['hourly'][7]['temp'] + '&deg';
-	  document.getElementById("8icon").innerHTML = response['data']['attributes']['hourly'][7]['icon'];
-	  document.getElementById("1_5day").innerHTML = response['data']['attributes']['five_day'][0]['day'];
-	  document.getElementById("1_5icon").innerHTML = response['data']['attributes']['five_day'][0]['icon'];
-	  var low_1 = response['data']['attributes']['five_day'][0]['low'] + '&deg';
-	  var high_1 = response['data']['attributes']['five_day'][0]['high'] + '&deg';
-	  document.getElementById("1_5temp").innerHTML = low_1 + '/' + high_1;
-	  document.getElementById("1_5rain").innerHTML = response['data']['attributes']['five_day'][0]['rain_chance'];
-	  document.getElementById("2_5day").innerHTML = response['data']['attributes']['five_day'][1]['day'];
-	  document.getElementById("2_5icon").innerHTML = response['data']['attributes']['five_day'][1]['icon'];
-	  var low_2 = response['data']['attributes']['five_day'][1]['low'] + '&deg';
-	  var high_2 = response['data']['attributes']['five_day'][1]['high'] + '&deg';
-	  document.getElementById("2_5temp").innerHTML = low_2 + '/' + high_2;
-	  document.getElementById("2_5rain").innerHTML = response['data']['attributes']['five_day'][1]['rain_chance'];
-	  document.getElementById("3_5day").innerHTML = response['data']['attributes']['five_day'][2]['day'];
-	  document.getElementById("3_5icon").innerHTML = response['data']['attributes']['five_day'][2]['icon'];
-	  var low_3 = response['data']['attributes']['five_day'][2]['low'] + '&deg';
-	  var high_3 = response['data']['attributes']['five_day'][2]['high'] + '&deg';
-	  document.getElementById("3_5temp").innerHTML = low_3 + '/' + high_3;
-	  document.getElementById("3_5rain").innerHTML = response['data']['attributes']['five_day'][2]['rain_chance'];
-	  document.getElementById("4_5day").innerHTML = response['data']['attributes']['five_day'][3]['day'];
-	  document.getElementById("4_5icon").innerHTML = response['data']['attributes']['five_day'][3]['icon'];
-	  var low_4 = response['data']['attributes']['five_day'][3]['low'] + '&deg';
-	  var high_4 = response['data']['attributes']['five_day'][3]['high'] + '&deg';
-	  document.getElementById("4_5temp").innerHTML = low_4 + '/' + high_4;
-	  document.getElementById("4_5rain").innerHTML = response['data']['attributes']['five_day'][3]['rain_chance'];
-	  document.getElementById("5_5day").innerHTML = response['data']['attributes']['five_day'][4]['day'];
-	  document.getElementById("5_5icon").innerHTML = response['data']['attributes']['five_day'][4]['icon'];
-	  var low_5 = response['data']['attributes']['five_day'][4]['low'] + '&deg';
-	  var high_5 = response['data']['attributes']['five_day'][4]['high'] + '&deg';
-	  document.getElementById("5_5temp").innerHTML = low_5 + '/' + high_5;
-	  document.getElementById("5_5rain").innerHTML = response['data']['attributes']['five_day'][4]['rain_chance'];
+	  showCurrent(response);
+	  showHourly(response);
+	  showFiveDay(response);
+	}
+
+	function showCurrent(response) {
+	  var current = response['data']['attributes'];
+	  var location = current['location'];
+	  location = location.toUpperCase();
+	  var time = current['time'];
+	  var temp = current['today']['current_temp'];
+	  temp = Math.round(temp);
+	  var summary = current['today']['current_summary'];
+	  var icon = current['today']['icon'];
+	  var left_current_data = "<h3>" + location + "</h3>\n                " + summary + "<br>\n                <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\">\n                <h2> " + temp + "&#8457</h2>";
+	  var leftDiv = document.createElement('div');
+	  leftDiv.innerHTML = left_current_data;
+	  leftDiv.className = 'weather_forecast';
+	  current_forecast.appendChild(leftDiv);
+
+	  var high = current['today']['high'];
+	  var low = current['today']['low'];
+	  var feels_like = current['today']['feels_like'];
+	  var humidity = current['today']['humidity'];
+	  humidity = parseInt(Number(humidity) * 100);
+	  var visibility = current['today']['visibility'];
+	  var uvindex = current['today']['uvindex'];
+	  var right_current_data = "<h3>Summary: </h3>\n                            <span>High:</span> " + high + " <br>\n                            <span>Low:</span> " + low + " <br>\n                            <span>Humidity:</span> " + humidity + "%<br>\n                            <span>Visibility:</span> " + visibility + " miles<br>\n                            <span>UV Index:</span> " + uvindex;
+	  var rightDiv = document.createElement('div');
+	  rightDiv.innerHTML = right_current_data;
+	  rightDiv.className = 'weather_forecast';
+	  current_forecast.appendChild(rightDiv);
+	}
+
+	function showHourly(response) {
+	  var hourly = response['data']['attributes']['hourly'];
+	  hourly.forEach(function (hour) {
+	    var time = hour['hour'];
+	    var temp = hour['temp'];
+	    temp = Math.round(temp);
+	    var icon = hour['icon'];
+
+	    var hour_data = "<h3>" + time + "</h3>\n                <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\">\n                <br><h3><span> " + temp + "&#8457 <span></h3>";
+	    var newDiv = document.createElement('div');
+	    newDiv.className = 'weather_forecast';
+	    newDiv.innerHTML = hour_data;
+	    hourly_forecast.appendChild(newDiv);
+	  });
+	}
+
+	function showFiveDay(response) {
+	  var five_day = response['data']['attributes']['five_day'];
+	  five_day.forEach(function (day) {
+	    var time = day['day'];
+	    var high = day['high'];
+	    high = Math.round(high);
+	    var low = day['low'];
+	    low = Math.round(low);
+	    var icon = day['icon'];
+	    var rain_chance = day['rain_chance'];
+	    rain_chance = parseInt(Number(rain_chance) * 100);
+	    var daily_data = "<h3>" + time + "</h3>\n                  <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\"><br>\n                  <h4>" + low + "&#8457 / " + high + "&#8457'</h4><br>\n                  <span>Rain Chance:</span> <br>" + rain_chance + "%";
+	    var newDiv = document.createElement('div');
+	    newDiv.className = 'weather_forecast';
+	    newDiv.innerHTML = daily_data;
+	    five_day_forecast.appendChild(newDiv);
+	  });
+	}
+
+	function displayFavorites(response) {
+	  var fav_cities = response['data']['attributes']['fav_cities_weather'];
+	  fav_cities.forEach(function (city) {
+	    var city_name = city['city'];
+	    city_name = city_name.toUpperCase();
+	    var summary = city['current_weather'][0]['current_summary'];
+	    var current_temp = city['current_weather'][0]['current_temp'];
+	    current_temp = Math.round(current_temp);
+	    var humidity = city['current_weather'][0]['humidity'];
+	    humidity = parseInt(Number(humidity) * 100);
+	    var low = city['current_weather'][0]['low'];
+	    low = Math.round(low);
+	    var high = city['current_weather'][0]['high'];
+	    high = Math.round(high);
+	    var fav_data = "<h3>" + city_name + "</h3>\n                  <img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\">\n                  <br><h2> " + current_temp + "&#8457 </h2>\n                  <span>Humidity:</span> " + humidity + "%\n                  <h4> " + low + "&#8457 / " + high + "&#8457 </h4>";
+	    var newDiv = document.createElement('div');
+	    newDiv.className = 'weather_forecast';
+	    newDiv.innerHTML = fav_data;
+	    favorited_cities.appendChild(newDiv);
+	  });
+	}
+
+	function displayRegisterForm() {
+	  clearClass("search");
+	  clearClass("forecast");
+	  clearClass("favorites");
+	  var form = document.getElementById("register_form");
+	  form.style.display = "block";
+	}
+
+	function clearClass(class_name) {
+	  var elements = document.getElementsByClassName(class_name);
+	  while (elements.length > 0) {
+	    elements[0].remove();
+	  }
+	}
+
+	function validateRegistration() {
+	  if (document.register.email.value == "") {
+	    alert("Please provide your email!");
+	    document.register.email.focus();
+	    return false;
+	  }
+	  if (document.register.psw.value == "") {
+	    alert("Please enter your password");
+	    document.register.psw.focus();
+	    return false;
+	  }
+	  if (document.register.psw_repeat.value == "") {
+	    alert("Please enter your password confirmation");
+	    document.register.psw_repeat.focus();
+	    return false;
+	  }
+	  if (document.register.psw_repeat.value != document.register.psw.value) {
+	    alert("Your password and password confirmation do not match.  Please try again.");
+	    document.register.psw.focus();
+	    return false;
+	  }
+	  return true;
 	}
 
 /***/ })
