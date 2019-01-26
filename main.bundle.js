@@ -48,13 +48,6 @@
 
 	var api_key = config.API_KEY;
 
-	var form = document.querySelector("form");
-	form.addEventListener("submit", function (event) {
-	  console.log("Saving value", form.elements.value.value);
-	  event.preventDefault();
-	});
-	// This file is in the entry point in your webpack config.
-
 	function submitLocation() {
 	  var _this = this;
 
@@ -186,6 +179,7 @@
 	}
 
 	function validateRegistration() {
+	  console.log("face");
 	  if (document.register.email.value == "") {
 	    alert("Please provide your email!");
 	    document.register.email.focus();
@@ -208,6 +202,28 @@
 	  }
 	  return true;
 	}
+
+	var registerUser = function registerUser() {
+	  var payload = {
+	    email: $("#email").val(),
+	    password: $("#psw").val(),
+	    password_confirmation: $("#psw-repeat").val()
+	  };
+
+	  console.log(payload);
+	  fetch("https://sweater-weather-25661.herokuapp.com/api/v1/users", {
+	    method: 'POST',
+	    headers: { 'Accept': 'application/json',
+	      'Content-Type': 'application/json' },
+	    body: JSON.stringify(payload)
+	  }).then(function (response) {
+	    return response.json();
+	  }).catch(function (error) {
+	    return console.error(error);
+	  });
+	};
+
+	$('#register-btn').on('click', registerUser);
 
 /***/ })
 /******/ ]);
