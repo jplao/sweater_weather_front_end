@@ -65,7 +65,7 @@ span{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 9px;
-  color: #0088B4;
+  color: #FFFFFF;
 }
 
 .current{
@@ -79,7 +79,7 @@ span{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 9px;
-  color: #00C2C9;
+  color: #FFFFFF;
 }
 
 .weather_forecast{
