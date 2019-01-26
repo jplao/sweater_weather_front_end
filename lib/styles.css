@@ -12,6 +12,10 @@ h1 {
   font-size: 60px;
 }
 
+h3{
+  color: #75FAC8;
+}
+
 input {
   width: 250px;
   padding: 5px;
@@ -48,6 +52,8 @@ span{
   color: #FFFFFF;
 }
 
+
+
 .hourly{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -63,6 +69,9 @@ span{
 }
 
 .current{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 9px;
   color: #FFFFFF;
 }
 
