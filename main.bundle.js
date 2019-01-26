@@ -86,15 +86,31 @@
 
 	function showCurrent(response) {
 	  var current = response['data']['attributes'];
-	  var location = current['location'].toUpperCase();
+	  var location = current['location'];
+	  location = location.toUpperCase();
 	  var time = current['time'];
 	  var temp = current['today']['current_temp'];
+	  temp = Math.round(temp);
 	  var summary = current['today']['current_summary'];
+	  var icon = current['today']['icon'];
+	  var left_current_data = "<h3>" + location + "</h3>\n                " + summary + "<br>\n                <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\">\n                <h2> " + temp + "&#8457</h2>";
+	  var leftDiv = document.createElement('div');
+	  leftDiv.innerHTML = left_current_data;
+	  leftDiv.className = 'weather_forecast';
+	  current_forecast.appendChild(leftDiv);
 
-	  var current_data = '<h3>' + location + '</h3>' + ("<img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\"") + '<br><h3>' + Math.round(temp) + '&#8457' + '</h3>';
-	  var newDiv = document.createElement('div');
-	  newDiv.innerHTML = current_data;
-	  current_forecast.appendChild(newDiv);
+	  var high = current['today']['high'];
+	  var low = current['today']['low'];
+	  var feels_like = current['today']['feels_like'];
+	  var humidity = current['today']['humidity'];
+	  humidity = parseInt(Number(humidity) * 100);
+	  var visibility = current['today']['visibility'];
+	  var uvindex = current['today']['uvindex'];
+	  var right_current_data = "<h3>Summary: </h3>\n                            <span>High:</span> " + high + " <br>\n                            <span>Low:</span> " + low + " <br>\n                            <span>Humidity:</span> " + humidity + "%<br>\n                            <span>Visibility:</span> " + visibility + " miles<br>\n                            <span>UV Index:</span> " + uvindex;
+	  var rightDiv = document.createElement('div');
+	  rightDiv.innerHTML = right_current_data;
+	  rightDiv.className = 'weather_forecast';
+	  current_forecast.appendChild(rightDiv);
 	}
 
 	function showHourly(response) {
@@ -102,9 +118,10 @@
 	  hourly.forEach(function (hour) {
 	    var time = hour['hour'];
 	    var temp = hour['temp'];
+	    temp = Math.round(temp);
 	    var icon = hour['icon'];
 
-	    var hour_data = '<h3>' + time + '</h3>' + ("<img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\"") + '<br><h3>' + Math.round(temp) + '&#8457' + '</h3>';
+	    var hour_data = "<h3>" + time + "</h3>\n                <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\">\n                <br><h3><span> " + temp + "&#8457 <span></h3>";
 	    var newDiv = document.createElement('div');
 	    newDiv.className = 'weather_forecast';
 	    newDiv.innerHTML = hour_data;
@@ -117,10 +134,13 @@
 	  five_day.forEach(function (day) {
 	    var time = day['day'];
 	    var high = day['high'];
+	    high = Math.round(high);
 	    var low = day['low'];
+	    low = Math.round(low);
 	    var icon = day['icon'];
 	    var rain_chance = day['rain_chance'];
-	    var daily_data = '<h3>' + time + '</h3>' + ("<img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\"") + '<br>' + '<h4>' + Math.round(low) + '&#8457' + '/' + Math.round(high) + '&#8457' + '</h4><br>' + 'Rain Chance: ' + parseInt(Number(rain_chance) * 100) + '%';
+	    rain_chance = parseInt(Number(rain_chance) * 100);
+	    var daily_data = "<h3>" + time + "</h3>\n                  <img src=\"./weather_icons/" + icon + ".gif\" alt=\"" + icon + "\"><br>\n                  <h4>" + low + "&#8457 / " + high + "&#8457'</h4><br>\n                  <span>Rain Chance:</span> <br>" + rain_chance + "%";
 	    var newDiv = document.createElement('div');
 	    newDiv.className = 'weather_forecast';
 	    newDiv.innerHTML = daily_data;
@@ -132,12 +152,17 @@
 	  var fav_cities = response['data']['attributes']['fav_cities_weather'];
 	  fav_cities.forEach(function (city) {
 	    var city_name = city['city'];
+	    city_name = city_name.toUpperCase();
 	    var summary = city['current_weather'][0]['current_summary'];
 	    var current_temp = city['current_weather'][0]['current_temp'];
+	    current_temp = Math.round(current_temp);
 	    var humidity = city['current_weather'][0]['humidity'];
+	    humidity = parseInt(Number(humidity) * 100);
 	    var low = city['current_weather'][0]['low'];
+	    low = Math.round(low);
 	    var high = city['current_weather'][0]['high'];
-	    var fav_data = '<h2>' + city_name + '</h2>' + ("<img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\"") + '<br><h3>' + Math.round(current_temp) + '&#8457' + '</h3>' + 'Humidity: ' + parseInt(Number(humidity) * 100) + '%' + '<h4>' + Math.round(low) + '&#8457' + '/' + Math.round(high) + '&#8457' + '</h4>';
+	    high = Math.round(high);
+	    var fav_data = "<h3>" + city_name + "</h3>\n                  <img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\">\n                  <br><h2> " + current_temp + "&#8457 </h2>\n                  <span>Humidity:</span> " + humidity + "%\n                  <h4> " + low + "&#8457 / " + high + "&#8457 </h4>";
 	    var newDiv = document.createElement('div');
 	    newDiv.className = 'weather_forecast';
 	    newDiv.innerHTML = fav_data;
