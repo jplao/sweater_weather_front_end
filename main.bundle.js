@@ -165,6 +165,7 @@
 	}
 
 	function displayRegisterForm() {
+	  document.getElementById("welcome").innerHTML = "";
 	  hideClass("search");
 	  hideClass("forecast");
 	  hideClass("favorites");
@@ -175,6 +176,7 @@
 	}
 
 	function displayLoginForm() {
+	  document.getElementById("welcome").innerHTML = "";
 	  hideClass("search");
 	  hideClass("forecast");
 	  hideClass("favorites");
