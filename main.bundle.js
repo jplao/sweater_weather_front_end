@@ -164,22 +164,26 @@
 	}
 
 	function displayRegisterForm() {
-	  clearClass("search");
-	  clearClass("forecast");
-	  clearClass("favorites");
+	  hideClass("search");
+	  hideClass("forecast");
+	  hideClass("favorites");
 	  var form = document.getElementById("register_form");
 	  form.style.display = "block";
 	}
 
-	function clearClass(class_name) {
-	  var elements = document.getElementsByClassName(class_name);
-	  while (elements.length > 0) {
-	    elements[0].remove();
-	  }
+	function hideClass(class_name) {
+	  $("." + class_name).hide();
+	}
+
+	function showClass(class_name) {
+	  $("." + class_name).show();
+	}
+
+	function clearInput(element_id) {
+	  document.getElementById(element_id).innerHTML = "";
 	}
 
 	function validateRegistration() {
-	  console.log("face");
 	  if (document.register.email.value == "") {
 	    alert("Please provide your email!");
 	    document.register.email.focus();
@@ -203,24 +207,30 @@
 	  return true;
 	}
 
-	var registerUser = function registerUser() {
+	var registerUser = function registerUser(event) {
+	  event.preventDefault();
 	  var payload = {
 	    email: $("#email").val(),
 	    password: $("#psw").val(),
 	    password_confirmation: $("#psw-repeat").val()
 	  };
 
-	  console.log(payload);
-	  fetch("https://sweater-weather-25661.herokuapp.com/api/v1/users", {
-	    method: 'POST',
-	    headers: { 'Accept': 'application/json',
-	      'Content-Type': 'application/json' },
-	    body: JSON.stringify(payload)
-	  }).then(function (response) {
-	    return response.json();
-	  }).catch(function (error) {
-	    return console.error(error);
-	  });
+	  if (validateRegistration()) {
+	    fetch("https://sweater-weather-25661.herokuapp.com/api/v1/users", {
+	      method: 'POST',
+	      headers: { 'Accept': 'application/json',
+	        'Content-Type': 'application/json' },
+	      body: JSON.stringify(payload)
+	    }).then(function (response) {
+	      return response.json();
+	    }).catch(function (error) {
+	      return console.error(error);
+	    });
+	    hideClass("register");
+	    clearInput("location");
+	    showClass("search");
+	    document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
+	  };
 	};
 
 	$('#register-btn').on('click', registerUser);
