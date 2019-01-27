@@ -71,6 +71,35 @@
 	  showClass("favorites");
 	}
 
+	function addFavorite() {
+	  var _this3 = this;
+
+	  var payload = {
+	    location: document.getElementById("location").value,
+	    api_key: sessionStorage.getItem("api_key")
+	  };
+	  var url = "https://sweater-weather-25661.herokuapp.com/api/v1/favorites";
+	  fetch(url, {
+	    method: 'POST',
+	    headers: { 'Accept': 'application/json',
+	      'Content-Type': 'application/json' },
+	    body: JSON.stringify(payload)
+	  }).then(function (response) {
+	    return response.json();
+	  }).catch(function (error) {
+	    return console.error(error);
+	  }).then(function (json_response) {
+	    return _this3.favoriteMessage(json_response);
+	  });
+	}
+
+	function favoriteMessage(json) {
+	  var location = json['data']['attributes']['location'];
+	  location = location.toUpperCase();
+	  document.getElementById("welcome").innerHTML = "<h3>Added " + location + " to your favorites</h3>";
+	  getFavorites();
+	}
+
 	function showWeather(response) {
 	  showClass("forecast");
 	  showCurrent(response);
@@ -258,6 +287,7 @@
 	  showClass("search");
 	  document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
 	  document.getElementById("favorites-btn").style.display = "inline-block";
+	  document.getElementById("add-favorite-btn").style.display = "inline-block";
 	  changeToLogOut();
 	};
 
@@ -286,6 +316,8 @@
 	    clearInput("location");
 	    showClass("search");
 	    document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
+	    document.getElementById("favorites-btn").style.display = "inline-block";
+	    document.getElementById("add-favorite-btn").style.display = "inline-block";
 	    changeToLogOut();
 	  };
 	};
