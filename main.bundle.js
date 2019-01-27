@@ -167,7 +167,19 @@
 	  hideClass("search");
 	  hideClass("forecast");
 	  hideClass("favorites");
+	  hideClass("login");
+	  showClass("register");
 	  var form = document.getElementById("register_form");
+	  form.style.display = "block";
+	}
+
+	function displayLoginForm() {
+	  hideClass("search");
+	  hideClass("forecast");
+	  hideClass("favorites");
+	  hideClass("register");
+	  showClass("login");
+	  var form = document.getElementById("login_form");
 	  form.style.display = "block";
 	}
 
@@ -181,6 +193,14 @@
 
 	function clearInput(element_id) {
 	  document.getElementById(element_id).innerHTML = "";
+	}
+
+	function changeToLogOut() {
+	  document.getElementById("login-btn").innerHTML = "Log Out";
+	}
+
+	function changeToLogIn() {
+	  document.getElementById("login-btn").value = "Login";
 	}
 
 	function validateRegistration() {
@@ -207,6 +227,32 @@
 	  return true;
 	}
 
+	var loginUser = function loginUser(event) {
+	  event.preventDefault();
+	  var payload = {
+	    email: $("#login_email").val(),
+	    password: $("#login_psw").val()
+	  };
+
+	  fetch("https://sweater-weather-25661.herokuapp.com/api/v1/sessions", {
+	    method: 'POST',
+	    headers: { 'Accept': 'application/json',
+	      'Content-Type': 'application/json' },
+	    body: JSON.stringify(payload)
+	  }).then(function (response) {
+	    return response.json();
+	  }).catch(function (error) {
+	    return console.error(error);
+	  }).then(function (json_response) {
+	    return storeSession(json_response);
+	  });
+	  hideClass("login");
+	  clearInput("location");
+	  showClass("search");
+	  document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
+	  changeToLogOut();
+	};
+
 	var registerUser = function registerUser(event) {
 	  event.preventDefault();
 	  var payload = {
@@ -232,6 +278,7 @@
 	    clearInput("location");
 	    showClass("search");
 	    document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
+	    changeToLogOut();
 	  };
 	};
 
@@ -240,6 +287,7 @@
 	}
 
 	$('#register-btn').on('click', registerUser);
+	$('#submit-login-btn').on('click', loginUser);
 
 /***/ })
 /******/ ]);

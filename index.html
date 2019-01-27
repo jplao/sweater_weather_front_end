@@ -9,7 +9,7 @@
 <div id='json'> </div>
   <div class='header'>
     <br>
-    <button class='button' id="login-btn" style="float:right">Login</button>
+    <button class='button' id="login-btn" onclick="displayLoginForm()" style="float:right">Login</button>
     <button class='button' onclick="displayRegisterForm()" style="float:right">Register</button>
     <h1><span>Sweater</span> Weather </h1>
   </div> <br><br>
@@ -33,6 +33,18 @@
       <input id='psw-repeat' type="password" placeholder="Repeat Password" name="psw_repeat"><br>
 
       <button class='button' id='register-btn' type="submit">Submit</button>
+    </form>
+  </div>
+
+  <div class='login'>
+    <form name='login' id='login_form' style="display:none">
+      <label for="email"><b><span>Email:</span></b></label>
+      <input id='login_email' type="text" placeholder="Enter Email" name="email"><br>
+
+      <label for="psw"><b><span>Password:</span></b></label>
+      <input id='login_psw' type="password" placeholder="Enter Password" name="psw"><br>
+
+      <button class='button' id='submit-login-btn' type="submit">Login</button>
     </form>
   </div>
 
