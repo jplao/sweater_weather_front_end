@@ -225,6 +225,8 @@
 	      return response.json();
 	    }).catch(function (error) {
 	      return console.error(error);
+	    }).then(function (json_response) {
+	      return storeSession(json_response);
 	    });
 	    hideClass("register");
 	    clearInput("location");
@@ -232,6 +234,10 @@
 	    document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
 	  };
 	};
+
+	function storeSession(json) {
+	  sessionStorage.setItem('api_key', "" + json.data.attributes.api_key);
+	}
 
 	$('#register-btn').on('click', registerUser);
 
