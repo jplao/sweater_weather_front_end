@@ -46,8 +46,6 @@
 
 	"use strict";
 
-	var api_key = config.API_KEY;
-
 	function submitLocation() {
 	  var _this = this;
 
@@ -63,15 +61,18 @@
 	function getFavorites() {
 	  var _this2 = this;
 
+	  var api_key = sessionStorage.getItem("api_key");
 	  var url = "https://sweater-weather-25661.herokuapp.com/api/v1/favorites?api_key=" + api_key;
 	  fetch(url).then(function (response) {
 	    return response.json();
 	  }).then(function (json_response) {
 	    _this2.displayFavorites(json_response);
 	  });
+	  showClass("favorites");
 	}
 
 	function showWeather(response) {
+	  showClass("forecast");
 	  showCurrent(response);
 	  showHourly(response);
 	  showFiveDay(response);
@@ -155,7 +156,7 @@
 	    low = Math.round(low);
 	    var high = city['current_weather'][0]['high'];
 	    high = Math.round(high);
-	    var fav_data = "<h3>" + city_name + "</h3>\n                  <img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\">\n                  <br><h2> " + current_temp + "&#8457 </h2>\n                  <span>Humidity:</span> " + humidity + "%\n                  <h4> " + low + "&#8457 / " + high + "&#8457 </h4>";
+	    var fav_data = "<h3>" + city_name + "</h3>\n                  <h4>" + summary + "</h4>\n                  <img src=\"./weather_icons/" + summary + ".gif\" alt=\"" + summary + "\">\n                  <br><h2> " + current_temp + "&#8457 </h2>\n                  <span>Humidity:</span> " + humidity + "%\n                  <h4> " + low + "&#8457 / " + high + "&#8457 </h4>";
 	    var newDiv = document.createElement('div');
 	    newDiv.className = 'weather_forecast';
 	    newDiv.innerHTML = fav_data;
@@ -196,11 +197,15 @@
 	}
 
 	function changeToLogOut() {
-	  document.getElementById("login-btn").innerHTML = "Log Out";
+	  document.getElementById("login-btn").style.display = "none";
+	  document.getElementById("reg-btn").style.display = "none";
+	  document.getElementById("logout-btn").style.display = "inline-block";
 	}
 
 	function changeToLogIn() {
-	  document.getElementById("login-btn").value = "Login";
+	  document.getElementById("logout-btn").style.display = "none";
+	  document.getElementById("login-btn").style.display = "inline-block";
+	  document.getElementById("reg-btn").style.display = "inline-block";
 	}
 
 	function validateRegistration() {
@@ -250,6 +255,7 @@
 	  clearInput("location");
 	  showClass("search");
 	  document.getElementById("welcome").innerHTML = "<h3>Welcome! " + payload.email + "<h3>";
+	  document.getElementById("favorites-btn").style.display = "inline-block";
 	  changeToLogOut();
 	};
 
@@ -284,6 +290,14 @@
 
 	function storeSession(json) {
 	  sessionStorage.setItem('api_key', "" + json.data.attributes.api_key);
+	}
+
+	function logoutUser() {
+	  sessionStorage.clear();
+	  changeToLogIn();
+	  document.getElementById("welcome").innerHTML = "<h3>Logged out successfully!</h3>";
+	  document.getElementById("favorites-btn").style.display = "none";
+	  hideClass("favorites");
 	}
 
 	$('#register-btn').on('click', registerUser);
