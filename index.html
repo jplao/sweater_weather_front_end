@@ -9,8 +9,9 @@
 <div id='json'> </div>
   <div class='header'>
     <br>
+    <button class='button' id="logout-btn" onclick="logoutUser()" style="float:right; display:none">Log Out</button>
     <button class='button' id="login-btn" onclick="displayLoginForm()" style="float:right">Login</button>
-    <button class='button' onclick="displayRegisterForm()" style="float:right">Register</button>
+    <button class='button' id="reg-btn" onclick="displayRegisterForm()" style="float:right">Register</button>
     <h1><span>Sweater</span> Weather </h1>
   </div> <br><br>
   <div id='welcome'></div>
@@ -18,7 +19,7 @@
   <div class='search'>
     <input id='location' type='text' placeholder='Enter location'>
     <button class='button' onclick="submitLocation()">Show Weather</button>
-    <button class='button' onclick="getFavorites()">Favorites</button>
+    <button class='button' id='favorites-btn' style="display:none" onclick="getFavorites()">Show Favorites</button>
   </div>
 
   <div class='register'>
