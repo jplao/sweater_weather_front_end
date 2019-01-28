@@ -74,6 +74,7 @@
 	function addFavorite() {
 	  var _this3 = this;
 
+	  event.preventDefault();
 	  var payload = {
 	    location: document.getElementById("location").value,
 	    api_key: sessionStorage.getItem("api_key")
