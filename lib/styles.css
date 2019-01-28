@@ -47,42 +47,51 @@ span{
   color: #FFFFFF;
 }
 
-.button:disabled {
+.button-group:disabled {
   background-color: #00C2C9;
   color: #FFFFFF;
 }
 
-
+.button-group{
+  float: left;
+  border: 1px solid white;
+  width: 33.3%;
+  background-color: #404041;
+  color: #FFFFFF;
+  font-size: 20px;
+  padding: 10px;
+}
 
 .hourly{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 9px;
   color: #00C2C9;
+  grid-row-gap: 9px;
 }
 
 .five_day{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 9px;
-  color: #FFFFFF;
+  grid-row-gap: 9px;
 }
 
 .current{
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 9px;
-  color: #FFFFFF;
+  grid-row-gap: 9px;
 }
 
 .favorites{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 9px;
-  color: #FFFFFF;
+  grid-row-gap: 9px;
 }
 
 .weather_forecast{
   background-color: #000000;
-  margin: 1;
+  color: #FFFFFF;
 }
