@@ -1,73 +1,80 @@
-# Self-Directed Front-End Start Kit
+# Sweater Weather Front End
+
+## Introduction
+This is a front end weather application that interacts with the "Sweater Weather" repository made at the end of Mod 3 while attending Turing. Visitors can search a location to display the current, hourly, and five day forecast of the searched city. Visitors can also Register and Login.  Once logged in, users can add a location to their favorites and display their favorited locations.  Users can also delete their favorited locations.
 
 ## Initial Setup
 
-1. Clone this starter kit repository and rename the repository to anything you'd like in one command:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-  ```shell
-  git clone git@github.com:turingschool-projects/self-directed-fe-starter.git <name of your choice>
-  ```
-2. Change into the new director directory.
+From GitHub clone down repository using the following commands in terminal:
+* `git clone git@github.com:jplao/sweater_weather_front_end.git`
+* `cd sweater_weather_front_end`
 
-3. Remove the default remote (origin):
+## How to Use
 
-  ```shell
-  git remote rm origin
-  ```
+### Running the Server Locally
 
-4. Create a new repository on GitHub.
+To run the server locally run:
+* `npm start`
 
-5. Add your new repository remote - **your remote URL and user name will be different in the command below**
-
-  ```shell
-  git remote add origin git@github.com:<YOUR GITHUB NAME>/<PROJECT NAME>.git
-  ```
-
-6. Install the dependencies of the starter kit:
-
-  ```shell
-  npm install
-  ```
-
-7. Add, commit, and push up to your repository:
-
-  ```shell
-  git add .
-  git commit -m "Initial commit using starter kit"
-  git push origin master
-  ```
-
-## Running the Server Locally
-
-To see your code in action locally, you need to fire up a development server. Use the command:
-
-```shell
-npm start
-```
-
-Once the server is running, visit in your browser:
-
+In your browser visit:
 * `http://localhost:8080/` to run your application.
 
+### Home Page
 
-## GitHub Pages Setup
+When visitors first visit the page they will see buttons to register, login and an input field to enter their search location.
+![Home Page](home.png)
 
-This site will be served from GitHub Pages in production.
+### Showing Forecast for a Searched Location
 
-In order to see your application running on production:
+#### Current Weather Forecast
+When a location is searched only the current forecast will be displayed. The "current" tab will be highlighted and disabled. Current weather conditionas as well as a summary will be displayed. Hourly and Five Day forecast data can be seen by clicking on the corresponding tabs.
+![Current forecast](current.png)
 
-1. From the command line, run `npm run build`.
+#### Hourly Weather Forecast
+To display only the hourly forecast, click on "hourly".  The "hourly" tab will be highlighted and disabled, while the "current" and "five day" tabs will be enabled. Forecast information for the next 8 hours will be displayed.
+![Hourly forecast](hourly.png)
 
-2. Commit and push your application to GitHub.
+#### Hourly Weather Forecast
+To display only the five day forecast, click on "five day".  The "five day" tab will be highlighted and disabled, while the "current" and "hourly" tabs will be enabled. Forecast information for the next 5 days will be displayed.
+![Five day forecast](five_day.png)
 
-3. Visit your repository on Github
+### Registering a New User
+To create a new account, a visitor can click on the "Register" button located at the top right side of the window. A form will be displayed with fields for email, password, and password confirmation.  An alert will be displayed if any of the fields are left empty.  An alert will also display if the password and the password confirmation are not the same.
+![Register form](register_form.png)
 
-4. Go to Settings
+If valid information is inputted, a welcome message will be displayed.  The an input field to search a location, as well as buttons to add locations to favorites and display favorites will appear. The "register" and "log in" buttons will be replaced with a "log out" button.
+![Logged in](logged_in.png)
 
-5. Under the Github Pages section of Options, select 'master' as your source and click `Save`
+### Logging in
 
-Be sure to `npm run build` and commit before each push to master. A few seconds after you push up, you should be able to see your application at <https://your-github-username.github.io/project-name>.
+To log in to an account that has already been created, a visitor can click on the "login" button.  A form will be displayed with fields for email and password.  
+![Login form](login_form.png)
 
+### Favorited Locations
+
+Once logged in, a user can display their favorited locations by clicking on "show favorites".
+![Favorite locations](favorites.png)
+
+To add a location to favorites, enter a location in the input field and click "add to favorites".  The page will reload with the new location displayed along with all the previously favorited locations. A message will be displayed confirming the location the user has added to their favorites.
+![Add a location](added_location.png)
+
+Each favorited location has a button within their forecast information to delete the location from favorites. Clicking on the button will deleted the location from the users favorites.  A message will be displayed confirming the location the user has deleted from their favorites.
+![Deleted location](deleted_location.png)
+
+### Logging Out
+
+Once a user logs out, a message will be displayed to confirm they have logged out.  The "log out" button will be replaced by the "register" and "login" buttons.  Any favorited forecast data that was being displayed while the user was logged is will be removed.  The buttons to add a location to favorites as well as display favorites will no longer be seen.
+![Log Out](log_out.png)
+
+## Known Issues
+
+Due to Heroku servers being located in a different time zone, the displayed hours may be offset.  Once a location has been deleted from a user's list of favorited cities, it cannot be re-added to favorites.
+
+## Core Contributors
+
+* Jennifer Lao - Github: [jplao](https://www.github.com/jplao)
 
 ## Built With
 
@@ -77,3 +84,6 @@ Be sure to `npm run build` and commit before each push to master. A few seconds 
 * [Mocha](https://mochajs.org/)
 * [Chai](https://chaijs.com/)
 
+## GitHub Pages Setup
+
+To view this project in production visit <https://jplao.github.io/sweater_weather_front_end/>.
