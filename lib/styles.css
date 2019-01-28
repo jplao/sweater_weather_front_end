@@ -47,12 +47,20 @@ span{
   color: #FFFFFF;
 }
 
-.button:disabled {
+.button-group:disabled {
   background-color: #00C2C9;
   color: #FFFFFF;
 }
 
-
+.button-group{
+  float: left;
+  border: 1px solid white;
+  width: 33.3%;
+  background-color: #404041;
+  color: #FFFFFF;
+  font-size: 20px;
+  padding: 10px;
+}
 
 .hourly{
   display: grid;
@@ -86,5 +94,4 @@ span{
 .weather_forecast{
   background-color: #000000;
   color: #FFFFFF;
-
 }
