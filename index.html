@@ -50,17 +50,17 @@
     </form>
   </div>
 
-  <div class='forecast'><br>
+  <div class='forecast' id='forecast'><br>
     <div>
-      <button class='button-group' id='current-btn' style="display:none" onclick="showCurrent()" disabled>Current</button>
-      <button class='button-group' id='hourly-btn' style="display:none" onclick="showHourly()" >Hourly</button>
-      <button class='button-group' id='five-day-btn' style="display:none" onclick="showFiveDay()" >Five Day</button>
+      <button class='button-group' id='now-btn' style="display:none" onclick="displayCurrent()" >Current</button>
+      <button class='button-group' id='hourly-btn' style="display:none" onclick="displayHourly()" >Hourly</button>
+      <button class='button-group' id='five-day-btn' style="display:none" onclick="displayFiveDay()" >Five Day</button>
     </div><br><br>
     <div class='current' id='current_forecast'>
     </div><br>
-    <div class='hourly' id='hourly_forecast'>
+    <div class='hourly' id='hourly_forecast' style="display:none">
     </div><br>
-    <div class='five_day' id='five_day_forecast'>
+    <div class='five_day' id='five_day_forecast' style="display:none">
     </div><br>
   </div>
   <div class='favorites' id='favorited_cities'>
